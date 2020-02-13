@@ -37,13 +37,4 @@ class AideController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/infos_pratiques", name="practice")
-     */
-    public function pratique()
-    {
-        return $this->render('aide/practice.html.twig',[
-            'controller_name' => 'AideController',
-        ]);
-    }
 }
