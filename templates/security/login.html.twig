@@ -1,7 +1,38 @@
 {% extends 'base.html.twig' %}
 
+
+
 {% block body %}
 
+    {% if error %}
 
+<div class="alert alert-danger text-center">
+
+  {{ error.messageKey | trans(error.MessageData, 'security') }}
+
+</div>
+
+{% endif %}
+
+<form method="post" action="{{ path('login' )}}" class="col-md-4 mx-auto text-center">
+
+  <div class="form-group">
+
+    <label for="_username">Prénom</label>
+
+    <input type="text" name="_username" class="form-control" placeholder="Votre prénom" required>
+
+  </div>
+
+  <div class="form-group">
+  
+    <label for="_password">Mot de passe</label>
+
+    <input type="password" name="_password" class="form-control" placeholder="Votre mot de passe" required>
+
+  </div>
+
+
+  <input type="submit" class="connexion rounded col-md-3" value="Connexion">
 
 {% endblock %}
