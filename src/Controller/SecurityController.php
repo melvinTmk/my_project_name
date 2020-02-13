@@ -36,4 +36,34 @@ class SecurityController extends AbstractController
             'controller_name' => 'SecurityController',
         ]);
     }
+
+    /**
+     * @Route("/page_ludi", name="ludi")
+     */
+    public function ludi()
+    {
+        return $this->render('security/pageLudi.html.twig', [
+            'controller_name' => 'SecurityController',
+        ]);
+    }
+
+    /**
+     * @Route("/page_melvin", name="melvin")
+     */
+    public function melvin()
+    {
+        return $this->render('security/pageMelvin.html.twig', [
+            'controller_name' => 'SecurityController',
+        ]);
+    }
+
+    /**
+     * @Route("/page_alex", name="alex")
+     */
+    public function alex()
+    {
+        return $this->render('security/pageAlex.html.twig', [
+            'controller_name' => 'SecurityController',
+        ]);
+    }
 }
