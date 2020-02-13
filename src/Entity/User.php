@@ -3,11 +3,16 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
-class User
+class User implements UserInterface
 {
     /**
      * @ORM\Id()
@@ -27,9 +32,11 @@ class User
     private $password;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @var array
+     * 
+     * @ORM\Column(type="json")
      */
-    private $roles;
+    private $roles = [];
 
     public function getId(): ?int
     {
@@ -60,15 +67,31 @@ class User
         return $this;
     }
 
-    public function getRoles(): ?string
+    // Cette méthode est uniquement destinée à nettoyer les mots de passe en text brut éventuellement stockés  
+    public function eraseCredentials()
+    {
+            
+    }
+    // Renvoie la chaine de caractères non encodé que l'utilisateur a saisir, qui a été utilisé à l'origine pour coder le mot de passe
+    public function getSalt()
+    {
+            
+    }
+
+    public function getRoles(): ?array
     {
         return $this->roles;
     }
 
-    public function setRoles(string $roles): self
+    public function setRoles(array $roles): self
     {
         $this->roles = $roles;
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->username;
     }
 }
